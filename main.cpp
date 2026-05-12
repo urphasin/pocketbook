@@ -23,9 +23,13 @@ int main() {
     right--;
   }
 
-
-
-
-
+  for (auto s : arr) {
+    std::cout << s << " ";
+  }
+  
+  
+  
+  std::cout << "\n";
+  std::cout << std::endl;
   return 0;
 }
