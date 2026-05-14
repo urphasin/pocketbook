@@ -9,6 +9,7 @@ int main()
     int val = 1;
     std::vector<int> items;
     int numberOfItemsEntered = 0;
+    int Count = 0;
 
     while (true) {
         std::cout << "Entered val from 1 to 999 inclusive or 0 to stop: ";
