@@ -26,6 +26,13 @@ int main() {
   for (auto s : arr) {
     std::cout << s << " ";
   }
+
+  std::cout << "\n";
+  int x = 0;
+  do {
+      std::cout << x << "\n";
+      x++;
+  } while (x < 3);
   
   
   

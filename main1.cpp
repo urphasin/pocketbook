@@ -3,8 +3,15 @@
 #include <limits>
 #include <iomanip>
 
+
+
+class FriendGraph {
+  // FriendGraph(st)
+};
+
 int main()
 {
+  
     // TODO
     int val = 1;
     std::vector<int> items;
@@ -14,6 +21,7 @@ int main()
     while (true) {
         std::cout << "Entered val from 1 to 999 inclusive or 0 to stop: ";
         std::cin >> val;
+
 
 
         if (std::cin.fail()) {
@@ -86,7 +94,8 @@ int main()
       << std::setw(9)   << min
       << std::setw(9)   << max
       << std::setw(9)   << total
-      << std::setw(9)   << range
+      << std::setw(9)   << range 
+      << std::fixed     << std::setprecision(2)
       << std::setw(14)  << average
       << "\n";
 

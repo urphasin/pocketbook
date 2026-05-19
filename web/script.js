@@ -14,3 +14,28 @@ while (left < right) {
 }
 
 console.warn(arr);
+
+
+class SocialGraph {
+  constructor(vertices) {
+    this.adj = new Map();
+    let m = this.adj;
+
+    vertices.forEach(person => this.adj.set(person, []));
+  }
+
+  addFriendship(a, b) {
+    this.adj.get(a).push(b);
+    this.adj.get(b).push(a);
+  }
+
+  print() {
+    for (let [k, v] of this.adj) {
+      console.log(k , " -> ",  v.join(", "))
+    }
+  }
+}
+
+const social = new SocialGraph(["Ava", "Max", "Anna", "Plummet", "Woodgrove", "Cosby"])
+social.addFriendship("Ava", "Max")
+social.print()
