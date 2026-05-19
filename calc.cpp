@@ -7,6 +7,11 @@ const double STD = 100'000;
 const double MINI = 10'000;
 const double MICRO = 1'000;
 
+const char* endM = "\x1b[0m";
+const char* greenBold = "\x1b[1;32m";
+const char* blueBold  = "\x1b[1;34m";
+
+
 double calCprofit(double a, double b) {
   return a - b;
 }
@@ -50,38 +55,48 @@ double calCmini100Margin(double price) {
 }
 
 
+void printLEV30(double v1) {
+    std::cout << "\n1:30 Leverage" << std::endl;
+    std::cout << "Standard Lot:  $" << calCstd30Margin(v1) << std::endl;
+    std::cout << "Mini Lot:  $" << calCmini30Margin(v1) << std::endl;
+    std::cout << "Micro Lot:  $" << calCmicro30Margin(v1) << "\n\n" << std::endl;
+}
+
+void printLEV100(double v1) {
+    std::cout << "\n1:100 Leverage" << std::endl;
+    std::cout << "Standard Lot:  $" << calCstd100Margin(v1) << std::endl;
+    std::cout << "Mini Lot:  $" << calCmini100Margin(v1) << std::endl;
+    std::cout << "Micro Lot:  $" << calCmicro100Margin(v1) << "\n\n" << std::endl;
+}
 
 
 
 int main() {
   while(true) {
-    std::cout << "\x1b[4;35m" << "10K Account Metrix" << "\x1b[0m" << std::endl;
+    std::cout << "\x1b[4;35m" << "10K Forex Account Metrix" << "\x1b[0m" << std::endl;
     
     
     double v1, v2;
     std::cout << "Enter v1 and v2: ";
     std::cin >> v1 >> v2;
     
-    std::cout << "\n1:30 Leverage" << std::endl;
-    std::cout << "Standard Lot:  $" << calCstd30Margin(v1) << std::endl;
-    std::cout << "Mini Lot:  $" << calCmini30Margin(v1) << std::endl;
-    std::cout << "Micro Lot:  $" << calCmicro30Margin(v1) << "\n\n" << std::endl;
+    printLEV30(v1);
     
-    
-    std::cout << "\n1:100 Leverage" << std::endl;
-    std::cout << "Standard Lot:  $" << calCstd100Margin(v1) << std::endl;
-    std::cout << "Mini Lot:  $" << calCmini100Margin(v1) << std::endl;
-    std::cout << "Micro Lot:  $" << calCmicro100Margin(v1) << "\n\n" << std::endl;
+    printLEV100(v1);
 
     
+
+    std::cout << "\x1b[1;4;32m" << "Profit" << "\x1b[0m" << std::endl;
     double profit = calCprofit(v1, v2);
 
-    std::cout << "\n\x1b[1;94m$" << profit << "\x1b[0m";
+    std::cout << greenBold << "Start: " << v1 << endM << std::endl;
+    std::cout << greenBold << "Stop: " << v2 << endM << std::endl;
+    std::cout << "\n\x1b[1;91m" << "Change:  $" << profit << "\x1b[0m";
 
     std::cout << "\n\x1b[1;93m" << calCpips(profit) << "\x1b[0m pips.\n" << std::endl;
     
     
-    std::cout << setw(12) << "micro-lot" << setw(12) << "mini-lot" << setw(12) << "std-lot" << std::endl;
-    std::cout << setw(6) << "$" << profit*1000 << setw(6) << "$" << profit*10'000 << setw(6) << "$" << profit*100'000 << std::endl;
+    std::cout << setw(12) << "micro-lot" << setw(12) << "mini-lot" << setw(13) << "std-lot" << std::endl;
+    std::cout << setw(6) << "\t$" << profit*1000 << setw(6) << "\t$" << profit*10'000 << setw(6) << "\t$" << profit*100'000 << std::endl;
   }
 }
