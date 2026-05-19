@@ -70,7 +70,7 @@ void printLEV100(double v1, float lotSize = 1) {
 }
 
 void printLotSizes(double profit, float lotSize = 1) {
-  std::cout << setw(12) << lotSize << "micro-lot" << setw(12) << lotSize << "mini-lot" << setw(13) << lotSize << "std-lot" << std::endl;
+  std::cout << setw(12) << lotSize/100 * 10000<< "micro-lot" << setw(12) << lotSize/10 * 100<< "mini-lot" << setw(13) << lotSize << "std-lot" << std::endl;
   std::cout << setw(6) << "\t\t\t$" << profit*1000*lotSize << setw(6) << "\t$" << profit*10'000*lotSize << setw(6) << "\t$" << profit*100'000*lotSize << std::endl;
 }
 
