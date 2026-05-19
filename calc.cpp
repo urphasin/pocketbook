@@ -55,48 +55,47 @@ double calCmini100Margin(double price) {
 }
 
 
-void printLEV30(double v1) {
+void printLEV30(double v1, float lotSize = 1) {
     std::cout << "\n1:30 Leverage" << std::endl;
-    std::cout << "Standard Lot:  $" << calCstd30Margin(v1) << std::endl;
-    std::cout << "Mini Lot:  $" << calCmini30Margin(v1) << std::endl;
-    std::cout << "Micro Lot:  $" << calCmicro30Margin(v1) << "\n\n" << std::endl;
+    std::cout << "Standard Lot:  $" << calCstd30Margin(v1) * lotSize << std::endl;
+    std::cout << "Mini Lot:  $" << calCmini30Margin(v1) * lotSize << std::endl;
+    std::cout << "Micro Lot:  $" << calCmicro30Margin(v1) * lotSize << "\n\n" << std::endl;
 }
 
-void printLEV100(double v1) {
+void printLEV100(double v1, float lotSize = 1) {
     std::cout << "\n1:100 Leverage" << std::endl;
-    std::cout << "Standard Lot:  $" << calCstd100Margin(v1) << std::endl;
-    std::cout << "Mini Lot:  $" << calCmini100Margin(v1) << std::endl;
-    std::cout << "Micro Lot:  $" << calCmicro100Margin(v1) << "\n\n" << std::endl;
+    std::cout << "Standard Lot:  $" << calCstd100Margin(v1) * lotSize << std::endl;
+    std::cout << "Mini Lot:  $" << calCmini100Margin(v1) * lotSize << std::endl;
+    std::cout << "Micro Lot:  $" << calCmicro100Margin(v1) * lotSize << "\n\n" << std::endl;
 }
 
-
+void printLotSizes(double profit, float lotSize = 1) {
+  std::cout << setw(12) << lotSize << "micro-lot" << setw(12) << lotSize << "mini-lot" << setw(13) << lotSize << "std-lot" << std::endl;
+  std::cout << setw(6) << "\t\t\t$" << profit*1000*lotSize << setw(6) << "\t$" << profit*10'000*lotSize << setw(6) << "\t$" << profit*100'000*lotSize << std::endl;
+}
 
 int main() {
   while(true) {
     std::cout << "\x1b[4;35m" << "10K Forex Account Metrix" << "\x1b[0m" << std::endl;
     
-    
     double v1, v2;
     std::cout << "Enter v1 and v2: ";
     std::cin >> v1 >> v2;
-    
-    printLEV30(v1);
-    
-    printLEV100(v1);
-
-    
 
     std::cout << "\x1b[1;4;32m" << "Profit" << "\x1b[0m" << std::endl;
     double profit = calCprofit(v1, v2);
-
     std::cout << greenBold << "Start: " << v1 << endM << std::endl;
     std::cout << greenBold << "Stop: " << v2 << endM << std::endl;
     std::cout << "\n\x1b[1;91m" << "Change:  $" << profit << "\x1b[0m";
+    std::cout << "\n\x1b[1;96m" << calCpips(profit) << "\x1b[0m pips.\n" << std::endl;
+    
+    std::cout << "Enter a lot size: " << std::endl;
+    double lotsize;
+    std::cin >> lotsize;
 
-    std::cout << "\n\x1b[1;93m" << calCpips(profit) << "\x1b[0m pips.\n" << std::endl;
+    printLEV30(v1, lotsize);
+    printLEV100(v1, lotsize);
+    printLotSizes(profit, lotsize);
     
-    
-    std::cout << setw(12) << "micro-lot" << setw(12) << "mini-lot" << setw(13) << "std-lot" << std::endl;
-    std::cout << setw(6) << "\t$" << profit*1000 << setw(6) << "\t$" << profit*10'000 << setw(6) << "\t$" << profit*100'000 << std::endl;
   }
 }
