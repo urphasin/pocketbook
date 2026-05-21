@@ -89,7 +89,7 @@ int main() {
     std::cout << "\n\x1b[1;91m" << "Change:  $" << profit << "\x1b[0m";
     std::cout << "\n\x1b[1;96m" << calCpips(profit) << "\x1b[0m pips.\n" << std::endl;
     
-    std::cout << "Enter a lot size: " << std::endl;
+    std::cout << "Enter a std-lot size: " << std::endl;
     double lotsize;
     std::cin >> lotsize;
 
